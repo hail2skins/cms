@@ -28,7 +28,7 @@ describe Owner do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
-  
+
   it { should be_valid }
 
   describe "when first_name is not present" do
@@ -70,7 +70,7 @@ describe Owner do
   describe "when email address is already taken" do
   	before do
       owner_with_same_email = @owner.dup
-      owner_with_same_email.email = @user.email.upcase
+      owner_with_same_email.email = @owner.email.upcase
       owner_with_same_email.save
   	end
   	it { should_not be_valid }
@@ -87,7 +87,7 @@ describe Owner do
   end
 
   describe "when password confirmation is nil" do
-  	before { @user.password_confirmation = nil }
+  	before { @owner.password_confirmation = nil }
   	it { should_not be_valid }
   end
 
@@ -103,7 +103,7 @@ describe Owner do
   	  let(:owner_for_invalid_password) { found_owner.authenticate("invalid") }
 
   	  it { should_not == owner_for_invalid_password }
-  	  specify { user_for_invalid_password.should be_false }
+  	  specify { owner_for_invalid_password.should be_false }
   	end
   end
 
