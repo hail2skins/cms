@@ -36,3 +36,18 @@ gem 'jbuilder', '~> 1.0.1'
 
 # To use debugger
 # gem 'debugger'
+
+# To use rspec for testing instead of test:unit
+gem 'rspec-rails', group: [:development, :test]
+
+gem 'capybara', group: [:development, :test]
+
+gem 'factory_girl_rails', group: [:development, :test]
+
+gem 'will_paginate'
+
+gem 'figaro'
+
+gem 'bootstrap-sass'
+
+
