@@ -1,5 +1,11 @@
-<% provide(:title, 'Home') %>
-<h1>Customer Management</h1>
-<p>
-  Home page to come
-</p>
+<div class="center hero-unit">
+  <h1>Welcome to the Customer Management Portal</h1>
+
+  <h2>
+    Home page for Hamco Internet Solution's CMS solution for small businesses.
+  </h2>
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+</div>
+
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
