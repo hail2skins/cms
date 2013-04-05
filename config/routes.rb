@@ -1,5 +1,5 @@
 Cms::Application.routes.draw do
-  resources 'owners'
+  resources :owners
   
   root to: 'static_pages#home'
 
