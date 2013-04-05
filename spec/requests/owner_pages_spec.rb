@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "User pages" do
+describe "Owner pages" do
 
   subject { page }
 
