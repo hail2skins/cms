@@ -28,8 +28,9 @@ GEM
     annotate (2.5.0)
       rake
     arel (4.0.0.beta2)
-    atomic (1.0.2)
+    atomic (1.1.0)
     bcrypt-ruby (3.0.1)
+    bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (2.3.1.0)
       sass (~> 3.2)
     builder (3.1.4)
