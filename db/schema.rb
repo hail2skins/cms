@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130405190112) do
+ActiveRecord::Schema.define(version: 20130406004111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 20130405190112) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remember_token"
   end
 
   add_index "owners", ["email"], name: "index_owners_on_email", unique: true
+  add_index "owners", ["remember_token"], name: "index_owners_on_remember_token"
 
 end
