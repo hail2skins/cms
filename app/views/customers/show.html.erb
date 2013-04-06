@@ -1,35 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
+  <b>First name:</b>
   <%= @customer.first_name %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
+  <b>Last name:</b>
   <%= @customer.last_name %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <b>Email:</b>
   <%= @customer.email %>
 </p>
 
 <p>
-  <strong>Phone:</strong>
+  <b>Phone:</b>
   <%= @customer.phone %>
 </p>
 
 <p>
-  <strong>Business:</strong>
+  <b>Business:</b>
   <%= @customer.business_id %>
 </p>
 
-<p>
-  <strong>Referred by:</strong>
-  <%= @customer.referred_by %>
-</p>
 
-
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<%= link_to 'Edit', edit_business_customer_path(@business, @customer) %> |
+<%= link_to 'Back', business_customers_path(@business) %>

@@ -1,6 +1,7 @@
 class BusinessesController < ApplicationController
-  before_action :set_business, only: [:show, :edit, :update, :destroy]
   before_action :get_owner
+  before_action :set_business, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @businesses = @owner.businesses
@@ -23,7 +24,7 @@ class BusinessesController < ApplicationController
 
     respond_to do |format|
       if @business.save
-        format.html { redirect_to @business, notice: 'Business was successfully created.' }
+        format.html { redirect_to owner_businesses_url(@owner), notice: 'Business was successfully created.' }
         format.json { render action: 'show', status: :created, location: @business }
       else
         format.html { render action: 'new' }

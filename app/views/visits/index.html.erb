@@ -1,31 +1,33 @@
-<h1>Listing visits</h1>
+<h1>Listing visits for <%= link_to @customer.name %></h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Visit notes</th>
-      <th>Date of visit</th>
-      <th>Customer</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<% if @customer.visits.count > 0 %>
+<table class="table table-hover table-condensed">
+  <tr>
+    <th>Visit notes</th>
+    <th>Date of visit</th>
+    <th>Customer</th>
+    <th></th>
+    <th></th>
+  </tr>
 
-  <tbody>
-    <% @visits.each do |visit| %>
-    <tr>
-      <td><%= visit.visit_notes %></td>
-      <td><%= visit.date_of_visit %></td>
-      <td><%= visit.customer_id %></td>
-      <td><%= link_to 'Show', visit %></td>
-      <td><%= link_to 'Edit', edit_visit_path(visit) %></td>
-      <td><%= link_to 'Destroy', visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-  </tbody>
+<% @visits.each do |visit| %>
+  <tr>
+    <td><%= link_to visit.visit_notes, [@customer, visit] %></td>
+    <td><%= visit.date_of_visit %></td>
+    <td><%= visit.customer.name %></td>
+    <td><%= link_to 'Edit', edit_customer_visit_path(@customer, visit), class: 'btn' %></td>
+    <td><%= link_to 'Delete', [@customer, visit], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+  </tr>
+<% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Visit', new_visit_path %>
+<% else %>
+  <p><%= @customer.name %> has not visited yet.  Please add a visit for this customer.</p>
+<% end %>
+
+<p>
+  <%= link_to 'New Visit', new_customer_visit_path(@customer) %> |
+  <%= link_to 'Back', [@business, @customer] %>
+</p>

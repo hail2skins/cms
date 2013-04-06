@@ -6,14 +6,14 @@ Cms::Application.routes.draw do
     resources :businesses
   end
 
-  #resources :businesses do
-  #  resources :customers
-  #  resources :services
-  #end
+  resources :businesses do
+    resources :customers
+    resources :services
+  end
 
-  #resources :customers do
-  #  resources :visits
-  #end
+  resources :customers do
+    resources :visits
+  end
 
   root to: 'static_pages#home'
 

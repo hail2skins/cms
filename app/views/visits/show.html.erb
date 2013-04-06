@@ -1,20 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Visit notes:</strong>
+  <b>Visit notes:</b>
   <%= @visit.visit_notes %>
 </p>
 
 <p>
-  <strong>Date of visit:</strong>
+  <b>Date of visit:</b>
   <%= @visit.date_of_visit %>
 </p>
 
 <p>
-  <strong>Customer:</strong>
-  <%= @visit.customer_id %>
+  <b>Customer:</b>
+  <%= @visit.customer.name %>
 </p>
 
 
-<%= link_to 'Edit', edit_visit_path(@visit) %> |
-<%= link_to 'Back', visits_path %>
+<%= link_to 'Edit', edit_customer_visit_path(@customer, @visit) %> |
+<%= link_to 'Back', customer_visits_path(@customer) %>

@@ -19,10 +19,9 @@
     <%= f.label :date_of_visit %><br />
     <%= f.date_select :date_of_visit %>
   </div>
-  <div class="field">
-    <%= f.label :customer_id %><br />
-    <%= f.number_field :customer_id %>
-  </div>
+
+    <%= f.label :name %>
+    <%= f.collection :services, as: :check_boxes, collection: Service.all %>
   <div class="actions">
     <%= f.submit %>
   </div>

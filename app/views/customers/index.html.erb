@@ -1,37 +1,37 @@
-<h1>Listing customers</h1>
+<h1>Listing customers for <%= link_to @business.name %></h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Business</th>
-      <th>Referred by</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<% if @business.customers.count > 0 %>
+<table class="table table-hover table-condensed">
+  <tr>
+    <th><%= sortable "first_name", "Name" %></th>
+    <th><%= sortable "email" %></th>
+    <th><%= sortable "phone" %></th>
+    <th><%= sortable "referred_by" %></th>
+    <th><%= sortable "visits" %></th>
+    <th></th>
+    <th></th>
+  </tr>
 
-  <tbody>
-    <% @customers.each do |customer| %>
-    <tr>
-      <td><%= customer.first_name %></td>
-      <td><%= customer.last_name %></td>
-      <td><%= customer.email %></td>
-      <td><%= customer.phone %></td>
-      <td><%= customer.business_id %></td>
-      <td><%= customer.referred_by %></td>
-      <td><%= link_to 'Show', customer %></td>
-      <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-      <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-  </tbody>
+<% @customers.each do |customer| %>
+  <tr>
+    <td><%= link_to customer.name, [@business, customer] %></td>
+    <td><%= customer.email %></td>
+    <td><%= customer.phone %></td>
+    <td><%= customer.referred_by %></td>
+    <td><%= customer.visits.count %></td>
+    <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn' %></td>
+    <td><%= link_to 'Delete', [@business, customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+  </tr>
+<% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Customer', new_customer_path %>
+<% else %>
+    <p><%= @business.name %> has not added any customers.  Please do so now.</p>
+<% end %>
+
+<p>
+    <%= link_to 'New Customer', new_business_customer_path(@business) %> |
+    <%= link_to 'Back', [@owner, @business] %>
+</p>

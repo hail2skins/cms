@@ -1,34 +1,28 @@
 class CustomersController < ApplicationController
+  before_action :get_business_and_owner
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
-  # GET /customers
-  # GET /customers.json
   def index
-    @customers = Customer.all
+    @customers = @business.customers.order(sort_column + " " + sort_direction)
   end
 
-  # GET /customers/1
-  # GET /customers/1.json
   def show
   end
 
-  # GET /customers/new
   def new
     @customer = Customer.new
   end
 
-  # GET /customers/1/edit
   def edit
   end
 
-  # POST /customers
-  # POST /customers.json
   def create
-    @customer = Customer.new(customer_params)
+    @customer = @business.customers.new(customer_params)
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.html { redirect_to business_customers_url(@business), notice: 'Customer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @customer }
       else
         format.html { render action: 'new' }
@@ -37,12 +31,10 @@ class CustomersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /customers/1
-  # PATCH/PUT /customers/1.json
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
+        format.html { redirect_to business_customers_url(@business), notice: 'Customer was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -51,12 +43,10 @@ class CustomersController < ApplicationController
     end
   end
 
-  # DELETE /customers/1
-  # DELETE /customers/1.json
-  def destroy
+def destroy
     @customer.destroy
     respond_to do |format|
-      format.html { redirect_to customers_url }
+      format.html { redirect_to business_customers_url(@business) }
       format.json { head :no_content }
     end
   end
@@ -64,11 +54,24 @@ class CustomersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.find(params[:id])
+      @customer = @business.customers.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
       params.require(:customer).permit(:first_name, :last_name, :email, :phone, :business_id, :referred_by)
+    end
+
+    def get_business_and_owner
+      @business = Business.find(params[:business_id])
+      @owner = @business.owner      
+    end
+
+    def sort_column
+      Customer.column_names.include?(params[:sort]) ? params[:sort] : "first_name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

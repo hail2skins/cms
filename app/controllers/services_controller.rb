@@ -1,34 +1,27 @@
 class ServicesController < ApplicationController
+  before_action :get_business_and_owner
   before_action :set_service, only: [:show, :edit, :update, :destroy]
 
-  # GET /services
-  # GET /services.json
-  def index
-    @services = Service.all
+   def index
+    @services = @business.services
   end
 
-  # GET /services/1
-  # GET /services/1.json
   def show
   end
 
-  # GET /services/new
   def new
-    @service = Service.new
+    @service = @business.services.build
   end
 
-  # GET /services/1/edit
   def edit
   end
 
-  # POST /services
-  # POST /services.json
   def create
-    @service = Service.new(service_params)
+    @service = @business.services.new(service_params)
 
     respond_to do |format|
       if @service.save
-        format.html { redirect_to @service, notice: 'Service was successfully created.' }
+        format.html { redirect_to business_services_url(@business), notice: 'Service was successfully created.' }
         format.json { render action: 'show', status: :created, location: @service }
       else
         format.html { render action: 'new' }
@@ -37,12 +30,10 @@ class ServicesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /services/1
-  # PATCH/PUT /services/1.json
   def update
     respond_to do |format|
       if @service.update(service_params)
-        format.html { redirect_to @service, notice: 'Service was successfully updated.' }
+        format.html { redirect_to business_services_url(@business), notice: 'Service was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -51,12 +42,10 @@ class ServicesController < ApplicationController
     end
   end
 
-  # DELETE /services/1
-  # DELETE /services/1.json
   def destroy
     @service.destroy
     respond_to do |format|
-      format.html { redirect_to services_url }
+      format.html { redirect_to business_services_url(@business) }
       format.json { head :no_content }
     end
   end
@@ -70,5 +59,10 @@ class ServicesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_params
       params.require(:service).permit(:name, :description, :cost, :business_id)
+    end
+
+    def get_business_and_owner
+      @business = Business.find(params[:business_id])
+      @owner = @business.owner      
     end
 end

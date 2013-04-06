@@ -1,6 +1,10 @@
-<h1>Editing customer</h1>
+<div class="row">
+  <div class="span6">
+    <h1>Editing customer for <%= @business.name %></h1>
 
-<%= render 'form' %>
+    <%= render 'form' %>
 
-<%= link_to 'Show', @customer %> |
-<%= link_to 'Back', customers_path %>
+    <%= link_to 'Show', [@business, @customer] %> |
+    <%= link_to 'Back', business_customers_path(@business) %>
+  </div>
+</div>

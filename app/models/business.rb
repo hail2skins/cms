@@ -18,7 +18,7 @@
 class Business < ActiveRecord::Base
 
  # each business belongs to user, through user_id
-  belongs_to :user
+  belongs_to :owner
 
   # each business has many customers and has many services
   has_many :customers

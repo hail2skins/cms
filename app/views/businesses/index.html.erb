@@ -1,17 +1,16 @@
-<h1>Listing businesses</h1>
+<h1>Listing businesses for <%= link_to @owner.name %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Street address</th>
+      <th>Business</th>
+      <th>Address</th>
       <th>Additional</th>
       <th>City</th>
       <th>State</th>
       <th>Zip code</th>
       <th>Description</th>
-      <th>User</th>
-      <th></th>
+      <th>Services</th>
       <th></th>
       <th></th>
     </tr>
@@ -20,17 +19,16 @@
   <tbody>
     <% @businesses.each do |business| %>
     <tr>
-      <td><%= business.name %></td>
+      <td><%= link_to business.name, [@owner, business] %></td>
       <td><%= business.street_address %></td>
       <td><%= business.additional %></td>
       <td><%= business.city %></td>
       <td><%= business.state %></td>
       <td><%= business.zip_code %></td>
       <td><%= business.description %></td>
-      <td><%= business.user_id %></td>
-      <td><%= link_to 'Show', business %></td>
-      <td><%= link_to 'Edit', edit_business_path(business) %></td>
-      <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= business.owner_id %></td>
+      <td><%= link_to 'Edit', edit_owner_business_path(@owner, business) %></td>
+      <td><%= link_to 'Destroy', [@owner, business], method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
   </tbody>

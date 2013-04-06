@@ -1,45 +1,58 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row">
+    <aside class="span4">
+    <section>
+        <p>Hello <%= link_to current_owner.first_name, current_owner %></p>
+        <p>Above link a profile link.</p>
+    </section>
+    <section>
 <p>
-  <strong>Name:</strong>
   <%= @business.name %>
 </p>
-
 <p>
-  <strong>Street address:</strong>
-  <%= @business.street_address %>
+  <%= @business.street_address %>, <%= @business.city %>, <%= @business.state %>, <%= @business.zip_code %>
 </p>
 
 <p>
-  <strong>Additional:</strong>
-  <%= @business.additional %>
+  <b>Business services:</b>
+  <% if @business.services.count < 1 %>
+  <p>To get started you need to enter business services.</p>
+  <p><%= link_to "Please click here to do so.", business_services_url(@business) %></p>
+  <% else %>
+  <%= link_to @business.services.count, business_services_url(@business) %>
+  <% end %>
 </p>
+     </section>
+     <section>
+        <p>Customer count: <%= link_to @business.customers.count, business_customers_url(@business) %></p>
+      </section>
+        </aside>
+<div class="span8">
+          <h3> Customer List for <%= @business.name %></h3>
+<table class="table table-condensed">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Visits</th>
+    <th></th>
+    <th></th>
+  </tr>
 
-<p>
-  <strong>City:</strong>
-  <%= @business.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @business.state %>
-</p>
-
-<p>
-  <strong>Zip code:</strong>
-  <%= @business.zip_code %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @business.description %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @business.user_id %>
-</p>
+<% @business.customers.each do |customer| %>
+  <tr>
+    <td><%= link_to customer.name, [@business, customer] %></td>
+    <td><%= customer.email %></td>
+    <td><%= customer.phone %></td>
+    <td><%= link_to customer.visits.count, customer_visits_path(customer) %></td>
+    <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn' %></td>
+    <td><%= link_to 'Delete', [@business, customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+        </div>    
+    </div>
 
 
-<%= link_to 'Edit', edit_business_path(@business) %> |
-<%= link_to 'Back', businesses_path %>
+<%= link_to 'Edit', edit_owner_business_path(@owner, @business) %> |
+<%= link_to 'Back', owner_businesses_path(@owner) %>
+

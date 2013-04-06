@@ -1,6 +1,6 @@
-<h1>Editing visit</h1>
+<h1>Editing visit for <%= @customer.name %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @visit %> |
-<%= link_to 'Back', visits_path %>
+<%= link_to 'Show', [@customer, @visit] %> |
+<%= link_to 'Back', customer_visits_path(@customer) %>
