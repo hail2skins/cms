@@ -14,6 +14,24 @@ module SessionsHelper
 	end
 
 	def current_owner
-		@current_owner = Owner.find_by_remember_token(cookies[:remember_token])
+		@current_owner ||= Owner.find_by_remember_token(cookies[:remember_token])
 	end
+
+	def current_owner?(owner)
+		owner == current_owner
+	end
+
+	def sign_out
+		self.current_owner = nil
+		cookies.delete(:remember_token)
+	end
+
+	def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to)
+  end
+
+  def store_location
+    session[:return_to] = request.url
+  end
 end

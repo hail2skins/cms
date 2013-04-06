@@ -45,6 +45,7 @@ gem 'capybara', group: [:development, :test]
 gem 'factory_girl_rails', group: [:development, :test]
 
 gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 gem 'figaro'
 

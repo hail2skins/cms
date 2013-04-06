@@ -27,6 +27,12 @@ describe "Owner pages" do
       it "should create a user" do
         expect { click_button submit }.to change(Owner, :count).by(1)
       end
+
+      it { should have_link('Businesses') }
+
+      describe "followed by signout" do
+        before { click_link "Sign out" }
+        it { should have_link('Sign in') }
     end
   end
 

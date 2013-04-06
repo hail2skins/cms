@@ -1,5 +1,9 @@
 class OwnersController < ApplicationController
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_owner,  only: [:show, :edit, :update, :destroy]
+  before_action :correct_owner,    only: [:show, :edit, :update, :destroy]
+
+
 
   # GET /owners
   # GET /owners.json
@@ -28,6 +32,7 @@ class OwnersController < ApplicationController
 
     respond_to do |format|
       if @owner.save
+        sign_in @owner
         format.html { redirect_to @owner, notice: 'Owner was successfully created.' }
         format.json { render action: 'show', status: :created, location: @owner }
       else
@@ -70,5 +75,16 @@ class OwnersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def owner_params
       params.require(:owner).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
+
+    def signed_in_owner
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: "Please sign in."  
+      end   
+    end
+
+    def correct_owner
+      redirect_to(root_path) unless current_owner?(@owner)      
     end
 end
