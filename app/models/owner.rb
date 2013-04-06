@@ -31,6 +31,8 @@ class Owner < ActiveRecord::Base
   before_save { |owner| owner.email = email.downcase }
   before_save :create_remember_token
 
+  has_many :businesses
+  
   validates :first_name, :last_name, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }

@@ -11,10 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130406004111) do
+ActiveRecord::Schema.define(version: 20130406061714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "businesses", force: true do |t|
+    t.string   "name"
+    t.string   "street_address"
+    t.string   "additional"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip_code"
+    t.text     "description"
+    t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "customers", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.integer  "phone"
+    t.integer  "business_id"
+    t.string   "referred_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "owners", force: true do |t|
     t.string   "first_name"
@@ -28,5 +52,22 @@ ActiveRecord::Schema.define(version: 20130406004111) do
 
   add_index "owners", ["email"], name: "index_owners_on_email", unique: true
   add_index "owners", ["remember_token"], name: "index_owners_on_remember_token"
+
+  create_table "services", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "cost"
+    t.integer  "business_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "visits", force: true do |t|
+    t.text     "visit_notes"
+    t.date     "date_of_visit"
+    t.integer  "customer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

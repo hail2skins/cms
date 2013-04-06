@@ -2,6 +2,19 @@ Cms::Application.routes.draw do
   resources :owners
   resources :sessions, only: [:new, :create, :destroy]
   
+  resources :owners do
+    resources :businesses
+  end
+
+  #resources :businesses do
+  #  resources :customers
+  #  resources :services
+  #end
+
+  #resources :customers do
+  #  resources :visits
+  #end
+
   root to: 'static_pages#home'
 
   get '/signup',      to: 'owners#new'
