@@ -33,7 +33,7 @@ class OwnersController < ApplicationController
     respond_to do |format|
       if @owner.save
         sign_in @owner
-        format.html { redirect_to @owner, notice: 'Owner was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Owner was successfully created.' }
         format.json { render action: 'show', status: :created, location: @owner }
       else
         format.html { render action: 'new' }

@@ -1,4 +1,4 @@
-<%= form_for(@visit) do |f| %>
+<%= form_for([@customer, @visit]) do |f| %>
   <% if @visit.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@visit.errors.count, "error") %> prohibited this visit from being saved:</h2>
@@ -11,18 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
     <%= f.label :visit_notes %><br />
     <%= f.text_area :visit_notes %>
-  </div>
-  <div class="field">
+
     <%= f.label :date_of_visit %><br />
     <%= f.date_select :date_of_visit %>
-  </div>
 
-    <%= f.label :name %>
-    <%= f.collection :services, as: :check_boxes, collection: Service.all %>
-  <div class="actions">
+    <%= f.label :name, 'Service Name' %>
+    <%= f.collection_check_boxes :service_ids, Service.all, :id, :name %>
+
     <%= f.submit %>
-  </div>
+
 <% end %>

@@ -6,7 +6,7 @@
     <th>Visit notes</th>
     <th>Date of visit</th>
     <th>Customer</th>
-    <th></th>
+    <th>Services Provided</th>
     <th></th>
   </tr>
 
@@ -15,6 +15,7 @@
     <td><%= link_to visit.visit_notes, [@customer, visit] %></td>
     <td><%= visit.date_of_visit %></td>
     <td><%= visit.customer.name %></td>
+    <td><%= visit.services.count %></td>
     <td><%= link_to 'Edit', edit_customer_visit_path(@customer, visit), class: 'btn' %></td>
     <td><%= link_to 'Delete', [@customer, visit], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
   </tr>

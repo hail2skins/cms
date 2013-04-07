@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130406061714) do
+ActiveRecord::Schema.define(version: 20130406222118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 20130406061714) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "services_visits", id: false, force: true do |t|
+    t.integer "service_id", null: false
+    t.integer "visit_id",   null: false
+  end
+
+  add_index "services_visits", ["service_id", "visit_id"], name: "index_services_visits_on_service_id_and_visit_id", unique: true
 
   create_table "visits", force: true do |t|
     t.text     "visit_notes"

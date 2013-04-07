@@ -28,7 +28,7 @@ describe "Authentication" do
     		click_button "Sign in"
     	end
 
- #   	it { should have_link('Sign out', href: owner_path(owner)) }
+    	it { should have_link('Businesses', href: owner_business_path(owner)) }
     	it { should_not have_link('Sign in', href: signin_path) } 
     end
 

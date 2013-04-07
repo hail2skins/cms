@@ -1,11 +1,34 @@
+<% if signed_in? %>
+	<% if current_owner.businesses.count < 1 %>
+		<div class="row">
+			<aside class="span4">
+				<section>
+					<p>Hello <%= current_owner.first_name %>.</p>
+					<p></p>
+					<p>In order to manage your customers you need to create a business.</p>
+         	<p>Please <%= link_to 'create your business', owner_businesses_path(@owner) %></p>
+				</section>
+			</aside>
+   	</div>
+	<% elsif current_owner.businesses.count > 1 %>
+  	<%= render template: 'businesses/index' %>
+  <% else %>
+    <%= render template: 'businesses/show' %>
+  <% end %>
+<% else %>
 <div class="center hero-unit">
-  <h1>Welcome to the Customer Management Portal</h1>
+  <h1>Small Business Customer Portal</h1>
 
   <h2>
-    Home page for Hamco Internet Solution's CMS solution for small businesses.
+    Manage your customers.   Increase your business.
   </h2>
 
   <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
 </div>
 
 <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+<% end %> 
+
+
+
+

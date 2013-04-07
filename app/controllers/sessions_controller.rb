@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 		owner = Owner.find_by_email(params[:session][:email].downcase)
 		if owner && owner.authenticate(params[:session][:password])
 			sign_in owner
-			redirect_back_or owner
+			redirect_back_or root_url
 		else
 			flash.now[:error] = 'Invalid email/password combination'
 			render 'new'
