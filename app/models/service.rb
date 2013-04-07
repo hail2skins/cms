@@ -15,7 +15,8 @@ class Service < ActiveRecord::Base
 
 	# a service may belong to one business through business_id
   belongs_to :business
-  has_and_belongs_to_many :visits
+  has_many :services_visits
+  has_many :visits, through: :services_visits
 
   validates :business_id, presence: true
   validates_presence_of :name, :cost
