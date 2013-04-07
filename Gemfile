@@ -53,5 +53,7 @@ gem 'bootstrap-sass'
 
 gem 'annotate', group: :development
 
+gem 'simple_form'
+
 
 
