@@ -15,7 +15,7 @@
     <%= f.text_area :visit_notes %>
 
     <%= f.label :date_of_visit %><br />
-    <%= f.date_select :date_of_visit %>
+    <%= f.date_field :date_of_visit %>
 
     <%= f.label :name, 'Service Name' %>
     <%= f.collection_check_boxes :service_ids, Service.all, :id, :name %>
