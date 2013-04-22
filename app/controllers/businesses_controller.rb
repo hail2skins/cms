@@ -2,13 +2,15 @@ class BusinessesController < ApplicationController
   before_action :get_owner
   before_action :set_business, only: [:show, :edit, :update, :destroy]
 
+  helper_method :sort_column, :sort_direction
+
 
   def index
     @businesses = @owner.businesses
   end
 
   def show
-    @customer = @business.customers.all
+    @customer = @business.customers.order(sort_column + " " + sort_direction)
   end
 
   def new
@@ -66,5 +68,13 @@ class BusinessesController < ApplicationController
 
     def get_owner
       @owner = Owner.find(params[:owner_id])
+    end
+
+    def sort_column
+      @business.customers.column_names.include?(params[:sort]) ? params[:sort] : "name"     
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

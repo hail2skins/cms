@@ -28,12 +28,13 @@
         </aside>
 <div class="span8">
           <h3> Customer List for <%= @business.name %></h3>
-<table class="table table-condensed">
+<table class="pretty">
   <tr>
-    <th>Name</th>
+    <th><%= sortable "first_name", "Name" %></th>
     <th>Email</th>
     <th>Phone</th>
     <th>Visits</th>
+    <th>Last Visit</th>
     <th></th>
     <th></th>
   </tr>
@@ -44,13 +45,16 @@
     <td><%= customer.email %></td>
     <td><%= customer.phone %></td>
     <td><%= link_to customer.visits.count, customer_visits_path(customer) %></td>
+    <td><%= customer.visits.last.date_of_visit %></td>
     <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn' %></td>
     <td><%= link_to 'Delete', [@business, customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
   </tr>
-<% end %>
-</table>
-        </div>    
-    </div>
+  <% end %>
+  </table>
+  <h1>Recent visits</h1>
+  
+</div>    
+</div>
 
 
 <%= link_to 'Edit', edit_owner_business_path(@owner, @business) %> |
