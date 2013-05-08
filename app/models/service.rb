@@ -19,5 +19,5 @@ class Service < ActiveRecord::Base
   has_many :visits, through: :services_visits
 
   validates :business_id, presence: true
-  validates_presence_of :name, :cost
+  validates_presence_of :name, :price
 end

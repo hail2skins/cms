@@ -1,0 +1,18 @@
+<% if signed_in? %>
+	<% if current_owner.businesses.count < 1 %>
+		<div class="row">
+			<aside class="span4">
+				<section>
+					<p>Hello <%= current_owner.first_name %>.</p>
+					<p></p>
+					<p>In order to manage your customers you need to create a business.</p>
+         	<p>Please <%= link_to 'create your business', owner_businesses_path(@owner) %></p>
+				</section>
+			</aside>
+   	</div>
+	<% elsif current_owner.businesses.count > 1 %>
+  	<%= render template: 'businesses/index' %>
+  <% else %>
+    <%= redirect_to(@owner) %>
+  <% end %>
+<% else %>

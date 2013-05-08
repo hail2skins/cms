@@ -28,9 +28,10 @@
         </aside>
 <div class="span8">
           <h3> Customer List for <%= @business.name %></h3>
-<table class="pretty">
+<table class="table table-conde">
   <tr>
-    <th><%= sortable "first_name", "Name" %></th>
+    <th>First Name</th>
+    <th>Last Name</th>
     <th>Email</th>
     <th>Phone</th>
     <th>Visits</th>
@@ -41,18 +42,17 @@
 
 <% @business.customers.each do |customer| %>
   <tr>
-    <td><%= link_to customer.name, [@business, customer] %></td>
+    <td><%= link_to customer.first_name, [@business, customer] %></td>
+    <td><%= link_to customer.last_name, [@business, customer] %></td>
     <td><%= customer.email %></td>
     <td><%= customer.phone %></td>
     <td><%= link_to customer.visits.count, customer_visits_path(customer) %></td>
-    <td><%= customer.visits.last.date_of_visit %></td>
+    <td><%= customer.visits.count == 0 ? "No visits" : customer.visits.last.date_of_visit %></td>
     <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn' %></td>
     <td><%= link_to 'Delete', [@business, customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
   </tr>
   <% end %>
   </table>
-  <h1>Recent visits</h1>
-  
 </div>    
 </div>
 
