@@ -1,25 +1,29 @@
-<p id="notice"><%= notice %></p>
-<h1><%= @owner.name %></h1>
-<p>
-  <strong>First name:</strong>
-  <%= @owner.first_name %>
-</p>
+<div class="row-fluid">
+	<div class="span4">
+		<p id="notice"><%= notice %></p>
+		<p>
+			<strong>Owner Name:</strong>
+			<%= link_to @owner.name, edit_owner_path(@owner) %>
+		</p>
+		<p>
+  		<strong>Email:</strong>
+  		<%= @owner.email %>
+		</p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @owner.last_name %>
-</p>
+		<%= link_to 'Edit', edit_owner_path(@owner) %>
+	</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @owner.email %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @owner.password_digest %>
-</p>
-
-
-<%= link_to 'Edit', edit_owner_path(@owner) %> |
-<%= link_to 'Back', owners_path %>
+	<div class="span4">
+		<% if @owner.businesses.count == 0 %>
+			<p>In order to manage your customers you need to tell us about your business.</p>
+			<p>Please <%= link_to "add your business here.", new_owner_business_path(@owner) %></p>
+		<% elsif @owner.businesses.count > 1 %>
+			<%= @owner.businesses.each do |business| %>
+				<%= link_to business.name, [@owner, business] %>
+			<% end %>
+		<% else %>
+			<%= @owner.businesses.first.name %><br>
+			<%= @owner.businesses.first.street_address %>
+		<% end %>
+	</div>
+</div>
