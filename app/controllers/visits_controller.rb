@@ -1,5 +1,5 @@
 class VisitsController < ApplicationController
-  before_action :get_customer_and_business
+  before_action :get_customer_business_and_owner
   before_action :set_visit, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -21,7 +21,7 @@ class VisitsController < ApplicationController
 
     respond_to do |format|
       if @visit.save
-        format.html { redirect_to customer_visits_url(@customer), notice: 'Visit was successfully created.' }
+        format.html { redirect_to [@owner, @business], notice: 'Visit was successfully created.' }
         format.json { render action: 'show', status: :created, location: @visit }
       else
         format.html { render action: 'new' }
@@ -33,7 +33,7 @@ class VisitsController < ApplicationController
   def update
     respond_to do |format|
       if @visit.update(visit_params)
-        format.html { redirect_to customer_visits_url(@customer), notice: 'Visit was successfully updated.' }
+        format.html { redirect_to [@owner, @business], notice: 'Visit was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -61,8 +61,9 @@ class VisitsController < ApplicationController
       params.require(:visit).permit(:visit_notes, :date_of_visit, :customer_id, :service_ids=>[])
     end
 
-    def get_customer_and_business
+    def get_customer_business_and_owner
       @customer = Customer.find(params[:customer_id])
       @business = @customer.business
+      @owner = @business.owner
     end
 end
