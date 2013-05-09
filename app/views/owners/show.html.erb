@@ -1,25 +1,27 @@
-<p id="notice"><%= notice %></p>
-<h1><%= @owner.name %></h1>
-<p>
-  <strong>First name:</strong>
-  <%= @owner.first_name %>
-</p>
+<div class="row-fluid">
+	<div class="span4">
+		<p id="notice"><%= notice %></p>
+		<p>
+			<strong>Owner Name:</strong>
+			<%= link_to @owner.name, edit_owner_path(@owner) %>
+		</p>
+		<p>
+  		<strong>Email:</strong>
+  		<%= @owner.email %>
+		</p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @owner.last_name %>
-</p>
+		<%= link_to 'Edit', edit_owner_path(@owner) %>
+	</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @owner.email %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @owner.password_digest %>
-</p>
-
-
-<%= link_to 'Edit', edit_owner_path(@owner) %> |
-<%= link_to 'Back', owners_path %>
+	<div class="span4">
+		<% if @owner.businesses.count == 0 %>
+			<p>In order to manage your customers you need to tell us about your business.</p>
+			<p>Please <%= link_to "add your business here.", new_owner_business_path(@owner) %></p>
+	  <% else %>
+	    <% @owner.businesses.each do |business| %>
+	      <p>This page is mostly just a placeholder for more.   We'll probably have it be a dashboard of lots of cool stuff about each registered business.   Things like how many customers, how much has been spent, biggest spender, number of visits, etc.   For now, just click the manage your business link below to start adding customers.</p>
+	      <%= link_to "Manage #{business.name}", owner_business_path(@owner, business) %>
+	    <% end %>
+	 	<% end %>
+	</div>
+</div>

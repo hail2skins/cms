@@ -20,4 +20,5 @@
 # Ignore application configuration
 /config/application.yml
 
-/.vagrant
+/.vagrant/machines/default/virtualbox/id
+
