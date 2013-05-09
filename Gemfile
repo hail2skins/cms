@@ -60,3 +60,5 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'jquery-datatables-rails', git: 'https://github.com/rweng/jquery-datatables-rails.git'
+

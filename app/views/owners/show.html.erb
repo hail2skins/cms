@@ -17,13 +17,11 @@
 		<% if @owner.businesses.count == 0 %>
 			<p>In order to manage your customers you need to tell us about your business.</p>
 			<p>Please <%= link_to "add your business here.", new_owner_business_path(@owner) %></p>
-		<% elsif @owner.businesses.count > 1 %>
-			<%= @owner.businesses.each do |business| %>
-				<%= link_to business.name, [@owner, business] %>
-			<% end %>
-		<% else %>
-			<%= @owner.businesses.first.name %><br>
-			<%= @owner.businesses.first.street_address %>
-		<% end %>
+	  <% else %>
+	    <% @owner.businesses.each do |business| %>
+	      <p>This page is mostly just a placeholder for more.   We'll probably have it be a dashboard of lots of cool stuff about each registered business.   Things like how many customers, how much has been spent, biggest spender, number of visits, etc.   For now, just click the manage your business link below to start adding customers.</p>
+	      <%= link_to "Manage #{business.name}", owner_business_path(@owner, business) %>
+	    <% end %>
+	 	<% end %>
 	</div>
 </div>

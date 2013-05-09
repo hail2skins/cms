@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
   before_action :get_business_and_owner
   before_action :set_service, only: [:show, :edit, :update, :destroy]
 
-   def index
+  def index
     @services = @business.services
   end
 

@@ -28,7 +28,7 @@
         </aside>
 <div class="span8">
           <h3> Customer List for <%= @business.name %></h3>
-<table class="table table-conde">
+<table class="table table-condensed">
   <tr>
     <th>First Name</th>
     <th>Last Name</th>
@@ -43,7 +43,7 @@
 <% @business.customers.each do |customer| %>
   <tr>
     <td><%= link_to customer.first_name, [@business, customer] %></td>
-    <td><%= link_to customer.last_name, [@business, customer] %></td>
+    <td><%= customer.last_name %></td>
     <td><%= customer.email %></td>
     <td><%= customer.phone %></td>
     <td><%= link_to customer.visits.count, customer_visits_path(customer) %></td>
