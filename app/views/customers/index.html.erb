@@ -16,7 +16,7 @@
   <tr>
     <td><%= link_to customer.name, [@business, customer] %></td>
     <td><%= customer.email %></td>
-    <td><%= customer.phone %></td>
+    <td><%= number_to_phone(customer.phone, area_code: true) %></td>
     <td><%= customer.referred_by %></td>
     <td><%= customer.visits.count %></td>
     <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn' %></td>
