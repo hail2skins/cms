@@ -5,6 +5,8 @@ ready = ->
 	$("#customers").dataTable
   	sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
   	sPaginationType: "bootstrap"
+  	"bRetrieve": true
+  	"bDestroy": true
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
