@@ -4,11 +4,6 @@
   <thead>
     <tr>
       <th>Business</th>
-      <th>Address</th>
-      <th>Additional</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip code</th>
       <th>Description</th>
       <th>Services</th>
       <th></th>
@@ -20,13 +15,8 @@
     <% @businesses.each do |business| %>
     <tr>
       <td><%= link_to business.name, [@owner, business] %></td>
-      <td><%= business.street_address %></td>
-      <td><%= business.additional %></td>
-      <td><%= business.city %></td>
-      <td><%= business.state %></td>
-      <td><%= business.zip_code %></td>
       <td><%= business.description %></td>
-      <td><%= business.owner_id %></td>
+      <td><%= business.services.count %></td>
       <td><%= link_to 'Edit', edit_owner_business_path(@owner, business) %></td>
       <td><%= link_to 'Destroy', [@owner, business], method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>

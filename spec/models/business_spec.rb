@@ -2,6 +2,18 @@
 #
 # Table name: businesses
 #
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :text
+#  owner_id    :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# == Schema Information
+#
+# Table name: businesses
+#
 #  id             :integer          not null, primary key
 #  name           :string(255)
 #  street_address :string(255)

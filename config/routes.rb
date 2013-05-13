@@ -1,4 +1,6 @@
 Cms::Application.routes.draw do
+  resources :addresses
+
   resources :owners
   resources :sessions, only: [:new, :create, :destroy]
   
