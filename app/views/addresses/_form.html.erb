@@ -1,28 +1,24 @@
-<% a.form_for :address do |a| %>
-
 <p>
-  <%= a.label :line1, 'Address 1' %><br />
-  <%= a.text_field :line1 %>
+  <%= f.label :line1, 'Address 1' %><br />
+  <%= f.text_field :line1 %>
 </p>
  
 <p>
-  <%= a.label :line2, 'Address 2' %><br />
-  <%= a.text_field :line2 %>
+  <%= f.label :line2, 'Address 2' %><br />
+  <%= f.text_field :line2 %>
 </p>
  
 <p>
-  <%= a.label :city %><br />
-  <%= a.text_field :city %>
+  <%= f.label :city %><br />
+  <%= f.text_field :city %>
 </p>
  
 <p>
-  <%= a.label :state %><br />
-  <%= a.text_field :state, size: 2 %>
+  <%= f.label :state %><br />
+  <%= f.text_field :state, size: 2 %>
 </p>
  
 <p>
-  <%= a.label :zip, 'Zip Code' %><br />
-  <%= a.number_field :zip, size: 5 %>
+  <%= f.label :zip, 'Zip Code' %><br />
+  <%= f.number_field :zip, size: 5 %>
 </p>
-
-<% end %>
