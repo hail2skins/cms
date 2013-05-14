@@ -7,7 +7,5 @@ FactoryGirl.define do
     city "MyString"
     state "MyString"
     zip 1
-    addressable_id 1
-    addressable_type "MyString"
   end
 end

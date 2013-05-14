@@ -21,7 +21,28 @@
   </div>
 
   <%= f.fields_for :address do |address| %>
-    <%= render partial: 'addresses/form', locals: { f: address } %>
+  <%= p address.object %>
+  <div class="field">
+    <%= address.label :line1 %><br>
+    <%= address.text_field :line1 %>
+  </div>
+  <div class="field">
+    <%= address.label :line2 %><br>
+    <%= address.text_field :line2 %>
+  </div>
+  <div class="field">
+    <%= address.label :city %><br>
+    <%= address.text_field :city %>
+  </div>
+  <div class="field">
+    <%= address.label :state %><br>
+    <%= address.text_field :state %>
+  </div>
+  <div class="field">
+    <%= address.label :zip %><br>
+    <%= address.number_field :zip %>
+  </div>
+ 
   <% end %>
 
   <div class="actions">

@@ -6,11 +6,10 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :city
       t.string :state, limit: 2
       t.integer :zip, limit: 5
-      t.integer :addressable_id
-      t.string :addressable_type
+      t.references :addressable, polymorphic: true
 
       t.timestamps
     end
-    add_index :addresses, [:addressable_type, :addressable_id], unique: true
+     add_index :addresses, [:addressable_type, :addressable_id], unique: true
   end
 end

@@ -15,15 +15,17 @@ class BusinessesController < ApplicationController
   def new
     @owner = Owner.find(params[:owner_id])
     @business = @owner.businesses.build
-    @business.build_address
+    @address = @business.build_address(params[:address])
+
   end
 
   def edit
-    @business.build_address
+    @address = @business.build_address(params[:address])
   end
 
   def create
     @business = @owner.businesses.new(business_params)
+    @address = @business.create_address(params[:address])
 
     respond_to do |format|
       if @business.save
@@ -37,6 +39,7 @@ class BusinessesController < ApplicationController
   end
 
   def update
+    @address = @business.create_address(params[:address])
     respond_to do |format|
       if @business.update(business_params)
         format.html { redirect_to owner_businesses_url(@owner), notice: 'Business was successfully updated.' }
@@ -64,7 +67,7 @@ class BusinessesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_params
-      params.require(:business).permit(:name, :description, :owner_id)
+      params.require(:business).permit(:name, :description, :address_attributes => {})
     end
 
     def get_owner

@@ -10,18 +10,6 @@
 #  updated_at  :datetime
 #
 
-# == Schema Information
-#
-# Table name: businesses
-#
-#  id             :integer          not null, primary key
-#  name           :string(255)
-#  description    :text
-#  owner_id       :integer
-#  created_at     :datetime
-#  updated_at     :datetime
-#
-
 class Business < ActiveRecord::Base
 
  # each business belongs to user, through user_id

@@ -1,24 +1,21 @@
-<p>
-  <%= f.label :line1, 'Address 1' %><br />
-  <%= f.text_field :line1 %>
-</p>
+  <div class="field">
+    <%= f.label :line1 %><br>
+    <%= f.text_field :line1 %>
+  </div>
+  <div class="field">
+    <%= f.label :line2 %><br>
+    <%= f.text_field :line2 %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br>
+    <%= f.text_field :state %>
+  </div>
+  <div class="field">
+    <%= f.label :zip %><br>
+    <%= f.number_field :zip %>
+  </div>
  
-<p>
-  <%= f.label :line2, 'Address 2' %><br />
-  <%= f.text_field :line2 %>
-</p>
- 
-<p>
-  <%= f.label :city %><br />
-  <%= f.text_field :city %>
-</p>
- 
-<p>
-  <%= f.label :state %><br />
-  <%= f.text_field :state, size: 2 %>
-</p>
- 
-<p>
-  <%= f.label :zip, 'Zip Code' %><br />
-  <%= f.number_field :zip, size: 5 %>
-</p>
