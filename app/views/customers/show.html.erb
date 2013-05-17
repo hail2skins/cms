@@ -20,10 +20,13 @@
   <%= number_to_phone(@customer.phone, area_code: true) %>
 </p>
 
-<p>
-  <b>Business:</b>
-  <%= @customer.business_id %>
-</p>
+<address>
+  <%= @customer.address.line1 %><br />
+  <% if !@customer.address.line2.blank? %>
+    <%= @customer.address.line2 %><br />
+  <% end %>
+  <%= @customer.address.city %>, <%= @customer.address.state %>, <%= @customer.address.zip %><br />
+</address>
 
 
 <%= link_to 'Edit', edit_business_customer_path(@business, @customer) %> |

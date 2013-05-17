@@ -1,47 +1,3 @@
-# == Schema Information
-#
-# Table name: customers
-#
-#  id          :integer          not null, primary key
-#  first_name  :string(255)
-#  last_name   :string(255)
-#  email       :string(255)
-#  business_id :integer
-#  referred_by :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#  phone       :string(10)
-#
-
-# == Schema Information
-#
-# Table name: customers
-#
-#  id          :integer          not null, primary key
-#  first_name  :string(255)
-#  last_name   :string(255)
-#  email       :string(255)
-#  business_id :integer
-#  referred_by :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#  phone       :string(10)
-#
-
-# == Schema Information
-#
-# Table name: customers
-#
-#  id          :integer          not null, primary key
-#  first_name  :string(255)
-#  last_name   :string(255)
-#  email       :string(255)
-#  business_id :integer
-#  referred_by :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#  phone       :string(10)
-#
 
 class Customer < ActiveRecord::Base
 
@@ -51,6 +7,9 @@ class Customer < ActiveRecord::Base
   # a customer has many visits
   has_many :visits
   accepts_nested_attributes_for :visits
+
+  has_one :address, as: :addressable
+  accepts_nested_attributes_for :address
 
   validates :business_id, presence: true
   validates_presence_of :first_name, :last_name, :phone, :email

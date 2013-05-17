@@ -1,4 +1,6 @@
 Cms::Application.routes.draw do
+  resources :phones
+
   resources :addresses
 
   resources :owners
