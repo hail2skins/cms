@@ -19,10 +19,12 @@ class OwnersController < ApplicationController
   # GET /owners/new
   def new
     @owner = Owner.new
+    @owner.build_address(params[:address])
   end
 
   # GET /owners/1/edit
   def edit
+    @owner.address ||= @owner.build_address(params[:address])
   end
 
   # POST /owners
@@ -74,7 +76,7 @@ class OwnersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def owner_params
-      params.require(:owner).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:owner).permit(:first_name, :last_name, :email, :password, :password_confirmation, :address_attributes => [:id, :line1, :line2, :city, :state, :zip])
     end
 
     def signed_in_owner

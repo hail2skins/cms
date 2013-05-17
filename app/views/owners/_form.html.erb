@@ -18,7 +18,13 @@
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation %>
 
-    <%= f.submit "Create my account", class: 'btn btn-large btn-primary' %>
+    <p>Please provide an address for you.  We'll get your business address later in the process:</p>
+
+    <%= f.fields_for :address do |address| %>
+      <%= render partial: 'addresses/form', locals: { f: address } %>
+    <% end %>
+
+    <%= f.submit class: 'btn btn-large btn-primary' %>
   </div>
   <% end %>
 </div>

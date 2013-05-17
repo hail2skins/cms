@@ -19,7 +19,7 @@ class BusinessesController < ApplicationController
   end
 
   def edit
-    @business.address ||= @business.build_address
+    @business.address ||= @business.build_address(params[:address])
   end
 
   def create
@@ -37,7 +37,7 @@ class BusinessesController < ApplicationController
   end
 
   def update
-   @business.address.update(params[:address])
+   #@business.address.update(params[:address])
     respond_to do |format|
       if @business.update(business_params)
         format.html { redirect_to owner_businesses_url(@owner), notice: 'Business was successfully updated.' }
