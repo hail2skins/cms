@@ -8,17 +8,16 @@ class Customer < ActiveRecord::Base
   has_many :visits
   accepts_nested_attributes_for :visits
 
-  has_one :address, as: :addressable
-  accepts_nested_attributes_for :address
+  has_one :address, as: :addressable, dependent: :destroy
+  accepts_nested_attributes_for :address, allow_destroy: true
 
-  has_many :phones, as: :phoneable
-  accepts_nested_attributes_for :phones
+  has_many :phones, as: :phoneable, dependent: :destroy
+  accepts_nested_attributes_for :phones, allow_destroy: true
 
   validates :business_id, presence: true
   validates_presence_of :first_name, :last_name, :email
-  #validates :phone, numericality: { only_integer: true }, length: { is: 10 }
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-
+  
    #simple interpolation with first and last name to a string on a name call.
   def name
     "#{first_name} #{last_name}".to_s   

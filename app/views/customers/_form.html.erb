@@ -26,6 +26,12 @@
   <%= f.fields_for :phones do |phones| %>
     <%= render partial: 'phones/form', locals: { f: phones } %>
   <% end %>
+  <% if @customer.phones.count > 0 %>
+  <div class="addphone">
+    <%= link_to "Add another phone number?", edit_business_customer_path(@business, @customer), remote: true %>
+  </div>
+  <% end %>
+
   <div class="field">
     <%= f.label :referred_by %><br />
     <%= f.text_field :referred_by %>
