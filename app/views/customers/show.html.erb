@@ -17,7 +17,9 @@
 
 <p>
   <b>Phone:</b>
-  <%= number_to_phone(@customer.phone, area_code: true) %>
+  <% @customer.phones.each do |phone| %>
+    <%= number_to_phone(phone.number, area_code: true) %>
+  <% end %>
 </p>
 
 <address>

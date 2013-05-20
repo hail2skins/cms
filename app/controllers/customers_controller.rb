@@ -13,10 +13,12 @@ class CustomersController < ApplicationController
   def new
     @customer = Customer.new
     @customer.build_address(params[:address])
+    @customer.phones.build(params[:phones])
   end
 
   def edit
     @customer.address ||= @customer.build_address(params[:address])
+    @customer.phones.build(params[:phones])
   end
 
   def create
@@ -61,7 +63,7 @@ def destroy
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:first_name, :last_name, :email, :phone, :business_id, :referred_by, :address_attributes => [:id, :line1, :line2, :city, :state, :zip])
+      params.require(:customer).permit(:first_name, :last_name, :email, :business_id, :referred_by, :address_attributes => [:id, :line1, :line2, :city, :state, :zip], :phones_attributes => [:id, :number])
     end
 
     def get_business_and_owner

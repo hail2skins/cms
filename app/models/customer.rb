@@ -11,9 +11,12 @@ class Customer < ActiveRecord::Base
   has_one :address, as: :addressable
   accepts_nested_attributes_for :address
 
+  has_many :phones, as: :phoneable
+  accepts_nested_attributes_for :phones
+
   validates :business_id, presence: true
-  validates_presence_of :first_name, :last_name, :phone, :email
-  validates :phone, numericality: { only_integer: true }, length: { is: 10 }
+  validates_presence_of :first_name, :last_name, :email
+  #validates :phone, numericality: { only_integer: true }, length: { is: 10 }
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
    #simple interpolation with first and last name to a string on a name call.

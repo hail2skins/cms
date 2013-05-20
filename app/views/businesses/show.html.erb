@@ -49,7 +49,9 @@
     <td><%= link_to customer.first_name, [@business, customer] %></td>
     <td><%= customer.last_name %></td>
     <td><%= customer.email %></td>
-    <td><%= number_to_phone(customer.phone, area_code: true) %></td>
+    <td><% customer.phones.each do |phone| %>
+      <%= number_to_phone(phone.number, area_code: true) %><br />
+    <% end %></td>
     <td><%= link_to customer.visits.count, customer_visits_path(customer) %></td>
     <td><%= customer.visits.count == 0 ? "No visits" : customer.visits.last.date_of_visit %></td>
     <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn' %></td>
