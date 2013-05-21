@@ -27,7 +27,7 @@
     <%= render partial: 'phones/form', locals: { f: phones } %>
   <% end %>
   <% if @customer.phones.count > 0 %>
-  <div class="addphone">
+  <div class="add_phone">
     <%= link_to "Add another phone number?", edit_business_customer_path(@business, @customer), remote: true %>
   </div>
   <% end %>

@@ -18,7 +18,7 @@ class CustomersController < ApplicationController
 
   def edit
     @customer.address ||= @customer.build_address(params[:address])
-    @customer.phones
+    @customer.phones ||= @customer.phones.build(params[:phones])
   end
 
   def create
@@ -39,7 +39,6 @@ class CustomersController < ApplicationController
     respond_to do |format|
       if @customer.update(customer_params)
         format.html { redirect_to [@owner, @business], notice: 'Customer was successfully updated.' }
-        format.js
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
