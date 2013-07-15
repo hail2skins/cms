@@ -186,17 +186,17 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-will_paginate
   capybara
-  coffee-rails (~> 4.0.0)
+  coffee-rails
   factory_girl_rails
   figaro
   jbuilder (~> 1.0.1)
   jquery-datatables-rails!
   jquery-rails
   pg
-  rails (= 4.0.0.rc1)
+  rails
   rspec-rails
   rvm-capistrano
-  sass-rails (~> 4.0.0.rc1)
+  sass-rails
   sdoc
   simple_form
   turbolinks
