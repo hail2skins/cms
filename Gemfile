@@ -25,8 +25,8 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
 
-# To use ActiveModel has_secure_password
-gem 'bcrypt-ruby'
+# To use ActiveModel has_secure_password and NEEDS the 3.0.0 with it
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
 gem 'unicorn'
