@@ -1,4 +1,6 @@
 Cms::Application.routes.draw do
+  resources :gift_certs
+
   resources :phones
 
   resources :addresses

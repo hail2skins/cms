@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @gift_cert.name %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @gift_cert.number %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @gift_cert.value %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @gift_cert.description %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @gift_cert.customer_id %>
+</p>
+
+<p>
+  <strong>Redeemed:</strong>
+  <%= @gift_cert.redeemed %>
+</p>
+
+<p>
+  <strong>Date redeemed:</strong>
+  <%= @gift_cert.date_redeemed %>
+</p>
+
+<%= link_to 'Edit', edit_gift_cert_path(@gift_cert) %> |
+<%= link_to 'Back', gift_certs_path %>
