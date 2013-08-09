@@ -6,7 +6,7 @@ class CreateGiftCerts < ActiveRecord::Migration
       t.integer :value
       t.text :description
       t.integer :customer_id
-      t.int :redeemed
+      t.integer :redeemed
       t.date :date_redeemed
 
       t.timestamps
