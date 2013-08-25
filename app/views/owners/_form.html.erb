@@ -18,6 +18,9 @@
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation %>
 
+    <%= f.label :admin, "Admin" %>
+    <%= f.check_box :admin %>
+
     <p>Please provide an address for you.  We'll get your business address later in the process:</p>
 
     <%= f.fields_for :address do |address| %>
