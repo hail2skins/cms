@@ -15,8 +15,8 @@ class Customer < ActiveRecord::Base
   accepts_nested_attributes_for :phones, allow_destroy: true
 
   validates :business_id, presence: true
-  validates_presence_of :first_name, :last_name, :email
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validates_presence_of :first_name, :last_name
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }, allow_blank: true
   
    #simple interpolation with first and last name to a string on a name call.
   def name

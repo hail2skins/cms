@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825135312) do
+ActiveRecord::Schema.define(version: 20130825150253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20130825135312) do
     t.string   "referred_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "middle_name"
   end
 
   create_table "gift_certs", force: true do |t|
