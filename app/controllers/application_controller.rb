@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   #this line controlls authorization for whole site
-  before_action :authorize
+  #before_action :authorize
   
   delegate :allow?, to: :current_permission
   helper_method :allow?
