@@ -9,5 +9,5 @@ class Service < ActiveRecord::Base
   accepts_nested_attributes_for :prices
 
   validates :business_id, presence: true
-  validates_presence_of :name, :price
+  validates_presence_of :name
 end

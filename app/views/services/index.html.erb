@@ -6,7 +6,6 @@
     <th>Service name</th>
     <th>Description</th>
     <th>Price</th>
-    <th>Business</th>
     <th></th>
     <th></th>
   </tr>
@@ -15,9 +14,10 @@
   <tr>
     <td><%= link_to service.name, [@business, service] %></td>
     <td><%= service.description %></td>
-    <td><%= number_to_currency(service.price) %></td>
-    
-    <td><%= service.business_id %></td>
+        <td><% service.prices.each do |p| %>
+          <%= number_to_currency(p.amount) %>
+        <% end %>
+    </td>
     <td><%= link_to 'Edit', edit_business_service_path(@business, service), class: 'btn' %></td>
     <td><%= link_to 'Delete', [@business, service], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
   </tr>
