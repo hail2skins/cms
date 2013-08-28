@@ -23,6 +23,12 @@
     <%= f.label :price %><br />
     <%= f.number_field :price %>
   </div>
+  <%= f.fields_for :prices do |price| %>
+    <%= render partial: 'prices/form', locals: { f: price } %>
+  <% end %>
+
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
