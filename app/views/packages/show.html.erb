@@ -16,16 +16,6 @@
 </p>
 
 <p>
-  <strong>Date purchased:</strong>
-  <%= @package.date_purchased %>
-</p>
-
-<p>
-  <strong>Date completed:</strong>
-  <%= @package.date_completed %>
-</p>
-
-<p>
   <b>Price:</b>
   <% @package.prices.each do |p| %>
     <%= number_to_currency(p.amount) %>

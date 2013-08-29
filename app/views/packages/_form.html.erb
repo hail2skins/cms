@@ -23,19 +23,15 @@
     <%= f.label :count %><br>
     <%= f.number_field :count %>
   </div>
-  <div class="field">
-    <%= f.label :date_purchased %><br>
-    <%= f.date_field :date_purchased %>
-  </div>
-  <div class="field">
-    <%= f.label :date_completed %><br>
-    <%= f.date_field :date_completed %>
-  </div>
   <div>
     <%= f.fields_for :prices do |price| %>
     <%= render partial: 'prices/form', locals: { f: price } %>
   <% end %>
   </div> 
+  <div>
+    <%= f.label :name, 'Service Name' %>
+    <%= f.collection_check_boxes :service_ids, Service.all, :id, :name %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

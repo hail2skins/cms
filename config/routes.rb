@@ -23,8 +23,6 @@ Cms::Application.routes.draw do
     resources :visits
   end
 
-  resources :visits
-
   root to: 'static_pages#home'
 
   get '/signup',      to: 'owners#new'

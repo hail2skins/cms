@@ -50,7 +50,7 @@ class PackagesController < ApplicationController
   def destroy
     @package.destroy
     respond_to do |format|
-      format.html { redirect_to packages_url }
+      format.html { redirect_to business_packages_url(@business) }
       format.json { head :no_content }
     end
   end
@@ -63,7 +63,7 @@ class PackagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def package_params
-      params.require(:package).permit(:name, :description, :business_id, :count, :date_purchased, :date_completed, :prices_attributes => [:id, :amount])
+      params.require(:package).permit(:name, :description, :business_id, :count, :prices_attributes => [:id, :amount], :service_ids=>[])
     end
 
     def get_business_and_owner

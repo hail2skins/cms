@@ -7,8 +7,6 @@
       <th>Name</th>
       <th>Description</th>
       <th>Count</th>
-      <th>Date purchased</th>
-      <th>Date completed</th>
       <th>Package Price</th>
       <th></th>
       <th></th>
@@ -21,8 +19,6 @@
         <td><%= link_to package.name, [@business, package] %></td>
         <td><%= package.description %></td>
         <td><%= package.count %></td>
-        <td><%= package.date_purchased %></td>
-        <td><%= package.date_completed %></td>
         <td><% package.prices.each do |p| %>
               <%= number_to_currency(p.amount) %>
             <% end %></td>

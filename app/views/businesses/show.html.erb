@@ -27,6 +27,19 @@
         <%= link_to "Click here to add a customer.", new_business_customer_path(@business) %>
 
       </section>
+
+
+<p>
+  <b>Business special packages:</b>
+  <% if @business.packages.count < 1 %>
+  <p>If you have special package pricing, please create a new package.</p>
+  <p><%= link_to "Please click here to do so.", business_packages_url(@business) %></p>
+  <% else %>
+  <%= link_to @business.packages.count, business_packages_path(@business) %>
+  <% end %>
+</p>
+     </section> 
+
         </div>
 <div class="span9">
 <h3> Customer List for <%= @business.name %></h3>

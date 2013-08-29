@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130829162814) do
+ActiveRecord::Schema.define(version: 20130829201351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,8 +80,6 @@ ActiveRecord::Schema.define(version: 20130829162814) do
     t.string   "name"
     t.text     "description"
     t.integer  "count"
-    t.date     "date_purchased"
-    t.date     "date_completed"
     t.integer  "business_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -114,6 +112,17 @@ ActiveRecord::Schema.define(version: 20130829162814) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "services_packages", force: true do |t|
+    t.integer  "service_id", null: false
+    t.integer  "package_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "services_packages", ["package_id"], name: "index_services_packages_on_package_id", using: :btree
+  add_index "services_packages", ["service_id", "package_id"], name: "index_services_packages_on_service_id_and_package_id", unique: true, using: :btree
+  add_index "services_packages", ["service_id"], name: "index_services_packages_on_service_id", using: :btree
 
   create_table "services_visits", force: true do |t|
     t.integer  "service_id", null: false
