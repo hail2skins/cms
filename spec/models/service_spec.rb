@@ -8,7 +8,6 @@
 #  business_id :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  price       :decimal(8, 2)
 #
 
 # == Schema Information

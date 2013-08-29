@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @package.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @package.description %>
+</p>
+
+<p>
+  <strong>Count:</strong>
+  <%= @package.count %>
+</p>
+
+<p>
+  <strong>Date purchased:</strong>
+  <%= @package.date_purchased %>
+</p>
+
+<p>
+  <strong>Date completed:</strong>
+  <%= @package.date_completed %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <% @package.prices.each do |p| %>
+    <%= number_to_currency(p.amount) %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_business_package_path(@business, @package) %> |
+<%= link_to 'Back', business_packages_path(@business) %>

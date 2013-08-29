@@ -1,4 +1,5 @@
 Cms::Application.routes.draw do
+  
   resources :gift_certs
 
   resources :phones
@@ -15,6 +16,7 @@ Cms::Application.routes.draw do
   resources :businesses do
     resources :customers
     resources :services
+    resources :packages
   end
 
   resources :customers do

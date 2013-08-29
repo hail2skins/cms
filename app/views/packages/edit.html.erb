@@ -1,0 +1,6 @@
+<h1>Editing package <%= @package.name %> for <%= @business.name %></h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [@business, @package %> |
+<%= link_to 'Back', business_packages_path(@business) %>

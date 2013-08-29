@@ -1,0 +1,43 @@
+<h1>Listing packages for <%= link_to @business.name %></h1>
+
+<% if @business.services.count > 0 %>
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Count</th>
+      <th>Date purchased</th>
+      <th>Date completed</th>
+      <th>Package Price</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @packages.each do |package| %>
+      <tr>
+        <td><%= link_to package.name, [@business, package] %></td>
+        <td><%= package.description %></td>
+        <td><%= package.count %></td>
+        <td><%= package.date_purchased %></td>
+        <td><%= package.date_completed %></td>
+        <td><% package.prices.each do |p| %>
+              <%= number_to_currency(p.amount) %>
+            <% end %></td>
+        <td><%= link_to 'Edit', edit_business_package_path(@business, package) %></td>
+        <td><%= link_to 'Delete', [@business, package], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% else %>
+  <p><%= @business.name %> has not added any business packages.   Please do so now.</p>
+<% end %>
+<p>
+  <%= link_to 'New Package', new_business_package_path(@business) %> |
+  <%= link_to 'Back', owner_businesses_path(@owner) %>
+</p>

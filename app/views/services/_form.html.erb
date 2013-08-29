@@ -19,10 +19,11 @@
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>
+  <div>
   <%= f.fields_for :prices do |price| %>
     <%= render partial: 'prices/form', locals: { f: price } %>
   <% end %>
-
+  </div>
 
 
   <div class="actions">

@@ -10,7 +10,7 @@
 #  referred_by :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
-#  phone       :string(10)
+#  middle_name :string(255)
 #
 
 # == Schema Information

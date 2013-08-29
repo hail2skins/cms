@@ -10,6 +10,8 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  remember_token  :string(255)
+#  admin           :boolean          default(FALSE)
+#  middle_name     :string(255)
 #
 
 # == Schema Information

@@ -20,6 +20,7 @@ class Business < ActiveRecord::Base
   # each business has many customers and has many services
   has_many :customers
   has_many :services
+  has_many :packages
 
   validates :owner_id, presence:true
   validates_presence_of :name
