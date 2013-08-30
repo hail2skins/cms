@@ -41,17 +41,25 @@
     <%= f.text_field :referred_by %>
   </div>
 
-  <div class="field">
-    <%= f.label :name, 'Package Name' %>
-    <%= f.collection_check_boxes :package_ids, Package.all, :id, :name %>
-  </div>
-  <div>
-   <%= f.fields_for :customers_packages do |date| %>
-     <%= date.label :date_purchased %>
-     <%= date.date_field :date_purchased %>
-   <% end %>
-  </div>
+    <% if @business.packages.count > 0 %>
+      <%= f.label :name, 'Select a purchased package for this customer:' %>
+      <%= f.collection_check_boxes :package_ids, Package.all, :id, :name %>
+    <% end %>
+ 
+    <% if @customer.packages.count > 0 %>
+     
+      <%= f.fields_for :customer_packages do |date| %>
 
+        <%= date.label :date_purchased %>
+        <%= date.date_field :date_purchased %>
+
+        <%= date.label :date_completed %>
+        <%= date.date_field :date_completed %>
+
+        <%= date.label :used_count, 'Has the customer used any of this package?  Default is 0 so only use this field if you are adding a partially used package.' %>
+        <%= date.number_field :used_count, default: 0 %>
+      <% end %>
+    <% end %>
 
   <%= f.fields_for :address do |address| %>
     <%= render partial: 'addresses/form', locals: { f: address } %>

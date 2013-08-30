@@ -5,11 +5,12 @@
   <%= @customer.first_name %>
 </p>
 
+<% if !@customer.middle_name.blank? %>
 <p>
   <b>Middle name:</b>
   <%= @customer.middle_name %>
 </p>
-
+<% end %>
 
 <p>
   <b>Last name:</b>
@@ -28,6 +29,17 @@
   <% end %>
 </p>
 
+<% if @customer.packages.count > 0 %>
+  <% @customer.packages.each do |p| %>
+    <p><%= p.name %></p>
+    <p><%= p.count %></p>
+    <% @customer.customer_packages.each do |j| %>
+      <p><%= j.date_purchased %></p>
+      <p><%= j.used_count %></p>
+    <% end %>
+  <% end %>
+<% end %>
+
 <address>
   <%= @customer.address.line1 %><br />
   <% if !@customer.address.line2.blank? %>
@@ -35,6 +47,7 @@
   <% end %>
   <%= @customer.address.city %>, <%= @customer.address.state %>, <%= @customer.address.zip %><br />
 </address>
+
 
 
 <%= link_to 'Edit', edit_business_customer_path(@business, @customer) %> |

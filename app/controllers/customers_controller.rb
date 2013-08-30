@@ -63,7 +63,7 @@ def destroy
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:first_name, :last_name, :middle_name, :email, :business_id, :referred_by, :address_attributes => [:id, :line1, :line2, :city, :state, :zip], :phones_attributes => [:id, :number], :customers_packages_attributes => [:date_completed, :date_purchased], :packages_ids => [])
+      params.require(:customer).permit(:first_name, :last_name, :middle_name, :email, :business_id, :referred_by, :address_attributes => [:id, :line1, :line2, :city, :state, :zip], :phones_attributes => [:id, :number], :customer_packages_attributes => [:date_completed, :date_purchased, :used_count], :package_ids => [])
     end
 
     def get_business_and_owner
