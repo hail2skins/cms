@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130829201351) do
+ActiveRecord::Schema.define(version: 20130829210951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,19 @@ ActiveRecord::Schema.define(version: 20130829201351) do
     t.datetime "updated_at"
     t.string   "middle_name"
   end
+
+  create_table "customers_packages", force: true do |t|
+    t.integer  "customer_id",    null: false
+    t.integer  "package_id",     null: false
+    t.date     "date_purchased"
+    t.date     "date_completed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "customers_packages", ["customer_id", "package_id"], name: "index_customers_packages_on_customer_id_and_package_id", unique: true, using: :btree
+  add_index "customers_packages", ["customer_id"], name: "index_customers_packages_on_customer_id", using: :btree
+  add_index "customers_packages", ["package_id"], name: "index_customers_packages_on_package_id", using: :btree
 
   create_table "gift_certs", force: true do |t|
     t.string   "name"

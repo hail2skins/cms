@@ -40,6 +40,19 @@
     <%= f.label :referred_by %><br />
     <%= f.text_field :referred_by %>
   </div>
+
+  <div class="field">
+    <%= f.label :name, 'Package Name' %>
+    <%= f.collection_check_boxes :package_ids, Package.all, :id, :name %>
+  </div>
+  <div>
+   <%= f.fields_for :customers_packages do |date| %>
+     <%= date.label :date_purchased %>
+     <%= date.date_field :date_purchased %>
+   <% end %>
+  </div>
+
+
   <%= f.fields_for :address do |address| %>
     <%= render partial: 'addresses/form', locals: { f: address } %>
   <% end %>  

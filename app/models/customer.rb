@@ -13,6 +13,11 @@ class Customer < ActiveRecord::Base
   has_many :phones, as: :phoneable, dependent: :destroy
   accepts_nested_attributes_for :phones, allow_destroy: true
 
+  has_many :customers_packages
+  has_many :packages, through: :customers_packages
+  accepts_nested_attributes_for :packages
+  accepts_nested_attributes_for :customers_packages
+
   validates :business_id, presence: true
   validates_presence_of :first_name, :last_name
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }, allow_blank: true

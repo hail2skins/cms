@@ -32,6 +32,7 @@
     <%= f.label :name, 'Service Name' %>
     <%= f.collection_check_boxes :service_ids, Service.all, :id, :name %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
