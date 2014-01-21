@@ -49,7 +49,7 @@ gem 'bootstrap-will_paginate'
 
 gem 'figaro'
 
-gem 'bootstrap-sass', '2.3.2.1'
+gem 'bootstrap-sass'
 
 gem 'annotate', group: :development
 
