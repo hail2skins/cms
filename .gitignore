@@ -22,3 +22,5 @@
 
 /.vagrant/machines/default/virtualbox/id
 
+/db/seeds.rb
+
