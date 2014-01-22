@@ -1,47 +1,80 @@
-<div class="row">
+<div class="container">
+  <div class="row">
+    
     <div class="col-lg-3">
-    <section>
-        <p>Hello <%= link_to current_owner.first_name, current_owner %></p>
-        <p>Above link a profile link.</p>
-    </section>
-    <section>
-<p>
-  <%= @business.name %>
-</p>
-<p>
-
-</p>
-
-<p>
-  <b>Business services:</b>
-  <% if @business.services.count < 1 %>
-  <p>To get started you need to enter business services.</p>
-  <p><%= link_to "Please click here to do so.", business_services_url(@business) %></p>
-  <% else %>
-  <%= link_to @business.services.count, business_services_path(@business) %>
-  <% end %>
-</p>
-     </section>
-     <section>
-        <p>Customer count: <%= link_to @business.customers.count, business_customers_url(@business) %></p>
-        <%= link_to "Click here to add a customer.", new_business_customer_path(@business) %>
-
-      </section>
-
-
-<p>
-  <b>Business special packages:</b>
-  <% if @business.packages.count < 1 %>
-  <p>If you have special package pricing, please create a new package.</p>
-  <p><%= link_to "Please click here to do so.", business_packages_url(@business) %></p>
-  <% else %>
-  <%= link_to @business.packages.count, business_packages_path(@business) %>
-  <% end %>
-</p>
-     </section> 
-
+      <div class="panel panel-primary">
+        <div class="panel-heading"> 
+          <h3 class="panel-title">Owner and Business Info</h3>
         </div>
-<div class="col-lg-9">
+        <div class="panel-body">
+          <p>
+            Hello <%= link_to current_owner.first_name, current_owner %>
+            Above link a profile link.
+            Business Name: <%= @business.name %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <% if @business.services.count < 1 %>
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h3 class="panel-title">Business Services</h3>
+          </div>
+          <div class="panel-body">
+            <p>
+              To get started you need to enter business services.
+              <%= link_to "Please click here to do so.", business_services_url(@business) %>
+            </p>
+          </div>
+        </div>
+      <% else %>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Business Services</h3>
+          </div>
+          <div class="panel body">
+          <p>
+            Total business services: <%= link_to @business.services.count, business_services_path(@business) %>
+            Add top five business services here later:
+          </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  <div class="col-lg-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Business Information</h3>
+      </div>
+      <div class="panel body">
+        <p>Customer count: <%= link_to @business.customers.count, business_customers_url(@business) %></p>
+        <p><%= link_to "Click here to add a customer.", new_business_customer_path(@business) %></p>
+        <p>
+          Special packages: 
+          <% if @business.packages.count < 1 %>
+            If you have special package pricing, <%= link_to "please click here to create", business_packages_url(@business) %>
+        </p>
+          <% else %>
+          <p>Special package count: <%= link_to @business.packages.count, business_packages_path(@business) %></p>
+          <% end %>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+
+
+
+
+
+<div class="row">
+
+<div class="col-lg-12">
 <h3> Customer List for <%= @business.name %></h3>
 <table class="table table-striped table-bordered" id="customers">
 <thead>
@@ -77,8 +110,9 @@
 </table>
 </div> 
 </div>
-
-
+</div>
+</div>
+</div>
 <%= link_to 'Edit', edit_owner_business_path(@owner, @business) %> |
 <%= link_to 'Back', owner_businesses_path(@owner) %>
 

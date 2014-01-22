@@ -1,5 +1,6 @@
-<div class="row">
-	<div class="col-md-4">
+<div class="container">
+	<div class="row">
+	<div class="col-md-6">
 		<p>
 			<strong>Owner Name:</strong>
 			<%= link_to @owner.name, edit_owner_path(@owner) %>
@@ -12,7 +13,7 @@
 		<%= link_to 'Edit', edit_owner_path(@owner) %>
 	</div>
 
-	<div class="col-md-4">
+	<div class="col-md-6">
 		<% if @owner.businesses.count == 0 %>
 			<p>In order to manage your customers you need to tell us about your business.</p>
 			<p>Please <%= link_to "add your business here.", new_owner_business_path(@owner) %></p>
@@ -22,5 +23,6 @@
 	      <%= link_to "Manage #{business.name}", owner_business_path(@owner, business) %>
 	    <% end %>
 	 	<% end %>
+	</div>
 	</div>
 </div>
