@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 ready = ->
 	$("#customers").dataTable
-  	sDom: "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>"
   	sPaginationType: "bootstrap"
   	"bRetrieve": true
   	"bDestroy": true
