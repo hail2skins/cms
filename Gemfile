@@ -44,6 +44,10 @@ gem 'capybara', group: [:development, :test]
 
 gem 'factory_girl_rails', group: [:development, :test]
 
+gem 'cucumber-rails', require: false, group: [:development, :test]
+
+gem 'database_cleaner', group: :test
+
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
