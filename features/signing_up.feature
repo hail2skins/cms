@@ -6,5 +6,5 @@ Feature: Signing Up
 	Scenario: Visiting the sign up page
 		Given I am at the home page of the site
 		When I click the link to sign up
-		Then I should be able to view a sign up form
-		And fill in my information
+		Then I should be on the sign up page
+		And be able to fill in my information
