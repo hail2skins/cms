@@ -30,7 +30,7 @@ Then(/^when I submit my information$/) do
 end
 
 Then(/^I should be an owner created successfully$/) do
-  pending # express the regexp above with the code you wish you had
+  response.should have_content("created successfully")
 end
 
 Then(/^I should be taken to the owner's home page$/) do
