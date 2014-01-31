@@ -8,6 +8,5 @@ Feature: Signing Up
 		When I click the link to sign up
 		Then I should be on the sign up page
 		And be able to fill in my information
-		Then when I submit my information
-		Then I should be an owner created successfully
-		And I should be taken to the owner's home page
+		And when I submit my information
+		Then I should be created successfully and taken to my owner page

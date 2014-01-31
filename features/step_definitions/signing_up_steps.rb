@@ -29,10 +29,7 @@ Then(/^when I submit my information$/) do
   click_button('Create Owner')
 end
 
-Then(/^I should be an owner created successfully$/) do
-  response.should have_content("created successfully")
-end
-
-Then(/^I should be taken to the owner's home page$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^I should be created successfully and taken to my owner page$/) do
+  should have_content("Owner was successfully created.")
+  should have_content("Owner Name: Art Mills")
 end
