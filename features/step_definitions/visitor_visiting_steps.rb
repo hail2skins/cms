@@ -11,7 +11,9 @@ Given(/^I can see a link to sign up$/) do
 end
 
 Given(/^I can see links to help, about and contact$/) do
-  pending # express the regexp above with the code you wish you had
+ 	page.should have_link("Help")
+ 	page.should have_link("About")
+ 	page.should have_link("Contact")
 end
 
 When(/^I click help from the home page$/) do
