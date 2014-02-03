@@ -9,6 +9,5 @@ Feature: Visitor Visiting
 		And I can see the site is in alpha testing
 		And I can see a link to sign up
 		And I can see links to help, about and contact
-		When I click help from the home page
-		Then I see the help page from the home page
+		Then I can click help, about and contact links from the home page
 		

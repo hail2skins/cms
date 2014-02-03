@@ -11,15 +11,24 @@ Given(/^I can see a link to sign up$/) do
 end
 
 Given(/^I can see links to help, about and contact$/) do
- 	page.should have_link("Help")
- 	page.should have_link("About")
- 	page.should have_link("Contact")
+ 	h = "Help"
+ 	a = "About"
+ 	c = "Contact"
+
+ 	[h,a,c].each do |link|
+ 		page.should have_link(link)
+ 	end
 end
 
-When(/^I click help from the home page$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^I can click help, about and contact links from the home page$/) do
+ 	h = "Help"
+ 	a = "About"
+ 	c = "Contact"
+
+ 	[h,a,c].each do |link|
+ 		click_link link
+ 	end
+
+
 end
 
-Then(/^I see the help page from the home page$/) do
-  pending # express the regexp above with the code you wish you had
-end
