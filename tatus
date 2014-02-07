@@ -1,0 +1,223 @@
+commit 0579366bcb054a2a4cc3c2b441977edbb04fb4b9
+Author: Art Mills <art@hamcois.com>
+Date:   Fri Feb 7 00:03:14 2014 +0000
+
+    More style and stuff.
+
+diff --git a/app/helpers/application_helper.rb b/app/helpers/application_helper.rb
+index f0c693b..ba492e2 100644
+--- a/app/helpers/application_helper.rb
++++ b/app/helpers/application_helper.rb
+@@ -5,7 +5,7 @@ module ApplicationHelper
+     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
+     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
+     html = <<-HTML
+-    <div class="alert alert-danger alert-block">
++    <div class="alert alert-error alert-block">
+       <button type="button" class="close" data-dismiss="alert">&#215;</button>
+       #{messages}
+     </div>
+diff --git a/app/views/businesses/show.html.erb b/app/views/businesses/show.html.erb
+index cb343c8..e7129d1 100644
+--- a/app/views/businesses/show.html.erb
++++ b/app/views/businesses/show.html.erb
+@@ -1,22 +1,19 @@
+-<div class="container">
+-  <div class="row">
+-    
+-    <div class="col-lg-3">
+-      <div class="panel panel-primary">
+-        <div class="panel-heading"> 
+-          <h3 class="panel-title">Owner and Business Info</h3>
+-        </div>
+-        <div class="panel-body">
+-          <p>
+-            Hello <%= link_to current_owner.first_name, current_owner %>
+-            Above link a profile link.
+-            Business Name: <%= @business.name %>
+-          </p>
+-        </div>
++<div class="row">
++  <div class="col-lg-3 col-lg-offset-1 sidebar">
++    <div class="panel panel-primary">
++      <div class="panel-heading"> 
++        <h3 class="panel-title">Owner and Business Info</h3>
++      </div>
++      <div class="panel-body">
++        <p>
++          Hello <%= link_to current_owner.first_name, current_owner %>
++          Above link a profile link.
++          Business Name: <%= @business.name %>
++        </p>
+       </div>
+     </div>
+ 
+-    <div class="col-lg-3">
++
+       <% if @business.services.count < 1 %>
+         <div class="panel panel-warning">
+           <div class="panel-heading">
+@@ -42,10 +39,9 @@
+           </div>
+         </div>
+       <% end %>
+-    </div>
++ 
+ 
+-  <div class="col-lg-3">
+-    <div class="panel panel-primary">
++<div class="panel panel-primary">
+       <div class="panel-heading">
+         <h3 class="panel-title">Business Information</h3>
+       </div>
+@@ -64,55 +60,47 @@
+     </div>
+   </div>
+ 
+-  </div>
+-
+-
+-
+-
+-
+-
+-
+-<div class="row">
++  <div class="col-lg-7">
++    <h3> Customer List for <%= @business.name %></h3>
++      <table class="table table-condensed table-striped table-bordered" id="customers">
++        <thead>
++          <tr>
++            <th>First Name</th>
++            <th>Last Name</th>
++            <th>Email</th>
++            <th>Phone</th>
++            <th>Visits</th>
++            <th>Last Visit</th>
++            <th>Package owner</th>
++            <th></th>
++            <th></th>
++          </tr>
++        </thead>
++        <tbody>
++        <% @business.customers.each do |customer| %>
++          <tr>
++            <td><%= link_to customer.first_name, [@business, customer] %></td>
++            <td><%= customer.last_name %></td>
++            <td><%= customer.email %></td>
++            <td><% customer.phones.each do |phone| %>
++              <%= number_to_phone(phone.number, area_code: true) %><br />
++            <% end %></td>
++            <td><%= link_to customer.visits.count, customer_visits_path(customer) %></td>
++    <td><%= customer.visits.count == 0 ? "No visits" : customer.visits.last.        date_of_visit %></td>
++            <td><%= customer.packages.count == 0 ? "No" : "Yes" %></td>
++            <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn' %></td>
++            <td><%= link_to 'Delete', [@business, customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
++          </tr>
++          <% end %>
++        </tbody>
++        </table>   
++      </div>
++    </div> 
+ 
+-<div class="col-lg-12">
+-<h3> Customer List for <%= @business.name %></h3>
+-<table class="table table-striped table-bordered" id="customers">
+-<thead>
+-  <tr>
+-    <th>First Name</th>
+-    <th>Last Name</th>
+-    <th>Email</th>
+-    <th>Phone</th>
+-    <th>Visits</th>
+-    <th>Last Visit</th>
+-    <th>Package owner</th>
+-    <th></th>
+-    <th></th>
+-  </tr>
+-</thead>
+-<tbody>
+-<% @business.customers.each do |customer| %>
+-  <tr>
+-    <td><%= link_to customer.first_name, [@business, customer] %></td>
+-    <td><%= customer.last_name %></td>
+-    <td><%= customer.email %></td>
+-    <td><% customer.phones.each do |phone| %>
+-      <%= number_to_phone(phone.number, area_code: true) %><br />
+-    <% end %></td>
+-    <td><%= link_to customer.visits.count, customer_visits_path(customer) %></td>
+-    <td><%= customer.visits.count == 0 ? "No visits" : customer.visits.last.date_of_visit %></td>
+-    <td><%= customer.packages.count == 0 ? "No" : "Yes" %></td>
+-    <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn' %></td>
+-    <td><%= link_to 'Delete', [@business, customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+-  </tr>
+-  <% end %>
+-</tbody>
+-</table>
+-</div> 
+-</div>
+-</div>
+-</div>
+-</div>
+-<%= link_to 'Edit', edit_owner_business_path(@owner, @business) %> |
+-<%= link_to 'Back', owner_businesses_path(@owner) %>
++    <div class="row">
++      <div class="col-md-6 col-md-offset-1">
++        <%= link_to 'Edit', edit_owner_business_path(@owner, @business) %> |
++        <%= link_to 'Back', owner_businesses_path(@owner) %>
++      </div>
++    </div>
+ 
+diff --git a/app/views/layouts/_footer.html.erb b/app/views/layouts/_footer.html.erb
+index b6803e2..2e8d1b6 100644
+--- a/app/views/layouts/_footer.html.erb
++++ b/app/views/layouts/_footer.html.erb
+@@ -1,6 +1,6 @@
+-<footer class="center footer">
++<footer class="footer">
+ 	<div class="row">
+-	  <div class="col-md-4 col-md-offset-4"
++	  <div class="col-md-4 col-md-offset-1"
+   <small>
+     &copy; <%= copyright_notice_year_range(2009) %> <%= link_to "Hamco Internet Solutions", "http://hamcois.com" %>
+   </small>
+diff --git a/app/views/sessions/new.html.erb b/app/views/sessions/new.html.erb
+index 00101ca..a488ad2 100644
+--- a/app/views/sessions/new.html.erb
++++ b/app/views/sessions/new.html.erb
+@@ -1,21 +1,19 @@
+ <div class="container">
+-<% provide(:title, "Sign in") %>
+-<h1>Sign in</h1>
++  <div class="row">
++    <div class="col-md-4 col-md-offset-4">
++      <% provide(:title, "Sign in") %>
++      <h1>Sign in</h1>
++        <%= form_for(:session, url: sessions_path) do |f| %>
+ 
+-<div class="row">
+-  <div class="col-md-6 col-md-offset-3">
+-    <%= form_for(:session, url: sessions_path) do |f| %>
++          <%= f.label :email %>
++          <%= f.text_field :email %>
+ 
+-      <%= f.label :email %>
+-      <%= f.text_field :email %>
++          <%= f.label :password %>
++          <%= f.password_field :password %>
+ 
+-      <%= f.label :password %>
+-      <%= f.password_field :password %>
+-
+-      <%= f.submit "Sign in", class: "btn btn-lg btn-primary" %>
+-    <% end %>
+-
+-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
++          <%= f.submit "Sign in", class: "btn btn-lg btn-primary" %>
++        <% end %>
++          <p>New user? <%= link_to "Sign up now!", signup_path %></p>
++    </div>
+   </div>
+-</div>
+ </div>
+\ No newline at end of file
