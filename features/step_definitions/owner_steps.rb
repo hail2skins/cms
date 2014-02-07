@@ -1,4 +1,4 @@
-Given(/^I am successfully signed up and signed in$/) do
+Given(/^I am an owner successfully signed in$/) do
   pending # express the regexp above with the code you wish you had
 end
 

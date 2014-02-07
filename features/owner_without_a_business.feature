@@ -4,7 +4,7 @@ Feature: Owner without a business
 	I should be on my profile page and have the ability to create a new business
 
 	Scenario: Owner creating first business
-		Given I am successfully signed up and signed in
+		Given I am an owner successfully signed in
     When I am on my owner profile page
 		Then I should be told I should create a business
 		And I should see a link to create a business
