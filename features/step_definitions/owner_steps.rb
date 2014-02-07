@@ -1,9 +1,11 @@
 Given(/^I am an owner successfully signed in$/) do
-  pending # express the regexp above with the code you wish you had
+  create_owner
+  sign_in
+  page.should have_title(@owner.name)
 end
 
 When(/^I am on my owner profile page$/) do
-  pending # express the regexp above with the code you wish you had
+  page.should have_title(@owner.name)
 end
 
 Then(/^I should be told I should create a business$/) do
