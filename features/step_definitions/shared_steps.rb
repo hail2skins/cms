@@ -9,7 +9,7 @@ end
 
 def sign_in  
 	visit signin_path
-	fill_in "Email", with: @owner[:email]
-	fill_in "Password", with: @owner[:password]
+	fill_in "Email", with: @owner.email
+	fill_in "Password", with: @owner.password
 	click_button "Sign in"
 end
