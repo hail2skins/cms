@@ -29,7 +29,7 @@ gem 'jbuilder'
 gem 'bcrypt-ruby'
 
 # Use unicorn as the app server
-gem 'unicorn'
+#gem 'unicorn'
 
 # Deploy with Capistrano
 group :development do
