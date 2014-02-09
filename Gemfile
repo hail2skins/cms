@@ -40,7 +40,7 @@ group :development do
   gem 'capistrano-rvm', '~>0.1'
 end
 
-
+gem 'rails_12factor', group: :production
 # To use debugger
 # gem 'debugger'
 
@@ -72,4 +72,6 @@ group :doc do
 end
 
 gem 'jquery-datatables-rails', git: 'https://github.com/rweng/jquery-datatables-rails.git'
+
+ruby "2.0.0"
 
