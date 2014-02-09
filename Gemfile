@@ -32,8 +32,14 @@ gem 'bcrypt-ruby'
 gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
-gem 'rvm-capistrano'
+group :development do
+	gem 'capistrano', '~> 3.1'
+#gem 'rvm-capistrano', '~> 1.1'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-bundler', '~>1.1'
+  gem 'capistrano-rvm', '~>0.1'
+end
+
 
 # To use debugger
 # gem 'debugger'
